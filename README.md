@@ -3,6 +3,10 @@
 ## Overview
 The Brain Tumor Classification and Image Filtering project is a web-based application built with Flask that provides functionality for classifying brain tumor images and performing various image filtering operations. This project includes the classification of brain tumor types using a machine learning model and the application of image filters to enhance and analyze medical images.
 
+## Sample outputs
+![Output](./brain_output.png)
+
+
 ## Features
 - Classifies brain tumor images into categories such as "no tumor," "pituitary tumor," "meningioma tumor," and "glioma tumor."
 - Performs image preprocessing, including resizing and normalizing image data.
