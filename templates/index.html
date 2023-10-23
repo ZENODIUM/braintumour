@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Brain Tumor Prediction</title>
+    <!-- Bootstrap CSS library -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+      
+      /* Custom CSS styles */
+      body {
+        background-color: #1c1c1c;
+        color: #fff;
+      }
+      h1 {
+        color: #ff8c00;
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
+      }
+      .btn {
+        background-color: #ff8c00;
+        border-color: #ff8c00;
+      }
+      .btn:hover {
+        background-color: #ffaf2c;
+        border-color: #ffaf2c;
+      }
+      input[type=file] {
+        color: #fff;
+      }
+      .container {
+        text-align: center;
+      }
+      img {
+        margin-top: 40px;
+      }
+      .box {
+        background-color: #1c1c1c;
+        color: #fff;
+        border: 2px solid #ff8c00;
+        padding: 20px;
+        margin-top: 40px;
+      }
+    </style>
+    <script>
+      function showImage(filename) {
+        var img = document.getElementById("myImage");
+        img.src = "{{ url_for('static', filename='') }}" + filename;
+      }
+    </script>
+
+  </head>
+  <body>
+    <div class="container">
+      <h1>Brain Tumor Prediction</h1>
+      <form method="POST" enctype="multipart/form-data" action="/predict">
+        <input type="file" class="btn" name="image">
+        <br>
+        <br>
+        <input type="submit" class="btn" value="Predict">
+      </form>
+      {% if prediction_text %}
+        <div class="box">
+          <h3>{{ prediction_text }}</h3>
+        </div>
+      {% endif %}
+      <h1>Display Images</h1>
+      <button class="btn" onclick="showImage('{{ imgname }}')">Original image</button>
+      <button class="btn" onclick="showImage('thresh/thresh1.jpg')">Threshold level 1</button>
+      <button class="btn" onclick="showImage('thresh/thresh2.jpg')">Threshold level 2</button>
+      <button class="btn" onclick="showImage('thresh/thresh3.jpg')">Threshold level 3</button>
+      <button class="btn" onclick="showImage('contour/contra.jpg')">Contour</button>
+      <button class="btn" onclick="showImage('edges/edges.jpg')">Edge detection</button>
+      <button class="btn" onclick="showImage('histogram/histogram.jpg')">Histogram equalized</button>
+      <br>
+      <img id="myImage">
+    </div>
+    
+    <!-- Bootstrap JS library -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
